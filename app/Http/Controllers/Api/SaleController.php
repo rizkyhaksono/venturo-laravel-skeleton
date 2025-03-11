@@ -31,8 +31,8 @@ class SaleController extends Controller
         $request->validate([
             'm_customer_id' => 'required|uuid',
             'product_detail' => 'required|array|min:1',
-            'product_detail.*.m_product_id' => 'required|uuid',
-            'product_detail.*.m_product_detail_id' => 'required|uuid',
+            'product_detail.*.m_product_id' => 'required',
+            'product_detail.*.m_product_detail_id' => 'required',
             'product_detail.*.total_item' => 'required|integer|min:1',
             'product_detail.*.price' => 'required|numeric|min:0',
         ]);
@@ -67,8 +67,8 @@ class SaleController extends Controller
         $request->validate([
             'm_customer_id' => 'required|uuid',
             'product_detail' => 'required|array|min:1',
-            'product_detail.*.m_product_id' => 'required|uuid',
-            'product_detail.*.m_product_detail_id' => 'required|uuid',
+            'product_detail.*.m_product_id' => 'required',
+            'product_detail.*.m_product_detail_id' => 'required',
             'product_detail.*.total_item' => 'required|integer|min:1',
             'product_detail.*.price' => 'required|numeric|min:0',
         ]);
