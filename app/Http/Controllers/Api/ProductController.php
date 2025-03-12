@@ -106,8 +106,6 @@ class ProductController extends Controller
         return response()->success(new ProductResource($product['data']), 'product berhasil diubah');
     }
 
-
-
     /**
      * Remove the specified resource from storage.
      */

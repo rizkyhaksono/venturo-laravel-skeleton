@@ -133,10 +133,8 @@ class SalesCategoryHelper extends Venturo
 
         $indexProducts++;
       }
-
       $indexSales++;
     }
-
     unset($salesDetail);
 
     return $list ?? [];

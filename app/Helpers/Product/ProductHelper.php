@@ -36,13 +36,10 @@ class ProductHelper extends Venturo
   {
     try {
       $payload = $this->uploadAndGetPayload($payload);
-
       $this->beginTransaction();
 
       $product = $this->product->store($payload);
-
       $this->insertUpdateDetail($payload['details'] ?? [], $product->id);
-
       $this->commitTransaction();
 
       return [
@@ -63,11 +60,8 @@ class ProductHelper extends Venturo
   {
     try {
       $this->beginTransaction();
-
       $this->product->drop($productId);
-
       $this->productDetail->dropByProductId($productId);
-
       $this->commitTransaction();
 
       return [
@@ -114,11 +108,8 @@ class ProductHelper extends Venturo
   {
     try {
       $payload = $this->uploadAndGetPayload($payload);
-
       $this->beginTransaction();
-
       $this->product->edit($payload, $payload['id']);
-
       $this->insertUpdateDetail($payload['details'] ?? [], $payload['id']);
       $this->deleteDetail($payload['details_deleted'] ?? []);
 

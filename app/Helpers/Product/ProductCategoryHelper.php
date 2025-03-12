@@ -19,7 +19,6 @@ class ProductCategoryHelper extends Venturo
   {
     try {
       $category = $this->categoryModel->store($payload);
-
       return [
         'status' => true,
         'data' => $category
@@ -36,7 +35,6 @@ class ProductCategoryHelper extends Venturo
   {
     try {
       $this->categoryModel->drop($id);
-
       return true;
     } catch (Throwable $th) {
       return false;

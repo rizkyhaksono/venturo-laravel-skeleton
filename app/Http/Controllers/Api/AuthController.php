@@ -53,7 +53,6 @@ class AuthController extends Controller
      */
     public function logout()
     {
-
         $logout = AuthHelper::logout();
 
         if (! $logout['status']) {

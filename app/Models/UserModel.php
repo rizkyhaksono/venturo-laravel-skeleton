@@ -123,11 +123,11 @@ class UserModel extends Authenticatable implements CrudInterface, JWTSubject
         $user = $this->query();
 
         if (! empty($filter['name'])) {
-            $user->where('name', 'LIKE', '%'.$filter['name'].'%');
+            $user->where('name', 'LIKE', '%' . $filter['name'] . '%');
         }
 
         if (! empty($filter['email'])) {
-            $user->where('email', 'LIKE', '%'.$filter['email'].'%');
+            $user->where('email', 'LIKE', '%' . $filter['email'] . '%');
         }
 
         $total = $user->count();

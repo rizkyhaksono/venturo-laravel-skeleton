@@ -59,7 +59,6 @@ class CustomerController extends Controller
       $payload_customer['m_user_id'] = $user['data']->id;
       $customer = $this->customer->create($payload_customer);
 
-
       if (!$customer['status']) {
         return response()->failed($customer['error']);
       }
@@ -84,7 +83,6 @@ class CustomerController extends Controller
       $payload_user['id'] = $request->m_user_id;
       $user = $this->user->update($payload_user, $payload_user['id'] ?? 0);
 
-
       $payload_customer = $request->only(['name', 'address', 'photo', 'id', 'phone']);
       $customer = $this->customer->update($payload_customer, $payload_customer['id'] ?? 0);
 
@@ -98,53 +96,6 @@ class CustomerController extends Controller
       return response()->failed($th);
     }
   }
-
-  // public function update(CustomerUpdateRequest $request)
-  // {
-  //   if (isset($request->validator) && $request->validator->fails()) {
-  //     return response()->failed($request->validator->errors());
-  //   }
-
-  //   try {
-  //     DB::beginTransaction();
-
-  //     // Validate that the ID exists in the request
-  //     $customerId = $request->input('id'); // Ensure we get the ID correctly
-  //     if (empty($customerId)) {
-  //       return response()->failed("Customer ID is required", 400);
-  //     }
-
-  //     // Check if customer exists before updating
-  //     $existingCustomer = $this->customer->getById($customerId);
-  //     if (!$existingCustomer['status']) {
-  //       return response()->failed("Customer not found", 404);
-  //     }
-
-  //     // Update user details
-  //     $payload_user = $request->only(['email', 'name', 'password']);
-  //     $payload_user['id'] = $request->input('m_user_id');
-
-  //     if (!empty($payload_user['id'])) {
-  //       $this->user->update($payload_user, $payload_user['id']);
-  //     }
-
-  //     // Update customer details
-  //     $payload_customer = $request->only(['name', 'address', 'photo', 'phone']);
-  //     $payload_customer['id'] = $customerId; // Ensure ID is set properly
-  //     $customer = $this->customer->update($payload_customer, $customerId);
-
-  //     if (!$customer['status']) {
-  //       DB::rollback();
-  //       return response()->failed($customer['error']);
-  //     }
-
-  //     DB::commit();
-  //     return response()->success(new CustomerResource($customer['data']), "Customer berhasil diubah");
-  //   } catch (\Throwable $th) {
-  //     DB::rollback();
-  //     return response()->failed($th->getMessage(), 500);
-  //   }
-  // }
 
   public function destroy($id)
   {

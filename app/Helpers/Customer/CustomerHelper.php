@@ -72,7 +72,6 @@ class CustomerHelper extends Venturo
       ];
     }
 
-
     return [
       'status' => true,
       'data' => $customer
@@ -86,9 +85,7 @@ class CustomerHelper extends Venturo
       $payload = $this->uploadGetPayload($payload);
       $this->customerModel->edit($payload, $id);
 
-
       $customer = $this->getById($id);
-
 
       return [
         'status' => true,
@@ -115,7 +112,6 @@ class CustomerHelper extends Venturo
     } else {
       unset($payload['photo']);
     }
-
 
     return $payload;
   }
