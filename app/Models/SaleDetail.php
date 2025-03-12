@@ -16,4 +16,9 @@ class SaleDetail extends Model
   {
     return $this->belongsTo(Sale::class, 't_sales_id');
   }
+
+  public function product()
+  {
+    return $this->belongsTo(ProductModel::class, 'm_product_id');
+  }
 }

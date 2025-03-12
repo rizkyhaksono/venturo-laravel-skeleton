@@ -8,9 +8,13 @@ use App\Models\Sale;
 use App\Models\SaleDetail;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Exports\ReportSalesCategory;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SaleController extends Controller
 {
+    protected $salesCustomer;
+
     public function index()
     {
         $sales = Sale::with('details')->get();
@@ -120,5 +124,27 @@ class SaleController extends Controller
             DB::rollBack();
             return response()->json(['message' => 'Failed to delete sale', 'error' => $e->getMessage()], 500);
         }
+    }
+
+    public function saleCustomer(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+        ]);
+
+        $sales = Sale::with(['customer', 'user'])
+            ->when($request->m_customer_id, function ($query) use ($request) {
+                return $query->where('m_customer_id', $request->m_customer_id);
+            })
+            ->when($request->m_user_id, function ($query) use ($request) {
+                return $query->where('m_user_id', $request->m_user_id);
+            })
+            ->when($request->start_date && $request->end_date, function ($query) use ($request) {
+                return $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            })
+            ->get();
+
+        return response()->json(['sales' => $sales], 200);
     }
 }
