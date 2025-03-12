@@ -27,7 +27,7 @@ class ProductController extends Controller
             'm_product_category_id' => $request->product_category_id ?? '',
             'is_available' => isset($request->is_available) ? $request->is_available : '',
         ];
-        $products = $this->product->getAll($filter, $request->per_page ?? 25, $request->sort ?? '');
+        $products = $this->product->getAll($filter, $request->page ?? 1, $request->per_page ?? 25, $request->sort ?? '');
 
         return response()->success(new ProductCollection($products['data']));
     }

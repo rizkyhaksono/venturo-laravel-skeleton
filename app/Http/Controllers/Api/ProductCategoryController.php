@@ -51,22 +51,18 @@ class ProductCategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        //     if (isset($request->validator) && $request->validator->fails()) {
-        //         return response()->failed($request->validator->errors());
-        //     }
+        if (isset($request->validator) && $request->validator->fails()) {
+            return response()->failed($request->validator->errors());
+        }
 
-        //     $payload = $request->only(['name']);
-        //     $category = $this->category->create($payload);
+        $payload = $request->only(['name']);
+        $category = $this->category->create($payload);
 
-        //     if (!$category['status']) {
-        //         return response()->failed($category['error']);
-        //     }
+        if (!$category['status']) {
+            return response()->failed($category['error']);
+        }
 
-        //     return response()->success(new CategoryResource($category['data']), 'category berhasil ditambahkan');
-
-        return [
-            'status' => true,
-        ];
+        return response()->success(new CategoryResource($category['data']), 'category berhasil ditambahkan');
     }
 
     public function update(CategoryRequest $request)
