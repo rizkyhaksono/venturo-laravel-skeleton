@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\User\AuthHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\AuthRequest;
+use App\Http\Requests\AuthRequest;
 use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
@@ -61,6 +61,5 @@ class AuthController extends Controller
         }
 
         return response()->success([], 'Logout Success !');
-
     }
 }

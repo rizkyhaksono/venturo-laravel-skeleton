@@ -3,7 +3,7 @@
 namespace App\Helpers\User;
 
 use App\Helpers\Venturo;
-use App\Http\Resources\User\UserResource;
+use App\Http\Resources\UserResource;
 use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
