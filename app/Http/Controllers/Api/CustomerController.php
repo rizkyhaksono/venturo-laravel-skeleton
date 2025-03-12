@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Helpers\Customer\CustomerHelper;
+use App\Helpers\User\UserHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Customer\CustomerCreateRequest;
+use App\Http\Requests\Customer\CustomerUpdateRequest;
 use App\Http\Resources\Customer\CustomerCollections;
 use App\Http\Resources\Customer\CustomerResource;
 use Illuminate\Http\Request;
-use App\Helpers\User\UserHelper;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\Customer\CustomerCreateRequest;
-use App\Http\Requests\Customer\CustomerUpdateRequest;
 
 class CustomerController extends Controller
 {

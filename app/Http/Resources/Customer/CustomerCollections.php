@@ -2,17 +2,17 @@
 
 namespace App\Http\Resources\Customer;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class CustomerCollections extends JsonResource
+class CustomerCollections extends ResourceCollection
 {
   public function toArray($request)
   {
     return [
       'list' => $this->collection, // otomatis mengikuti format CustomerResource
       'meta' => [
-        'links' => $this->getUrlRange(1, $this->lastPage()),
-        'total' => $this->total()
+        'links' => $this->resource->getUrlRange(1, $this->resource->lastPage()),
+        'total' => $this->resource->total()
       ]
     ];
   }

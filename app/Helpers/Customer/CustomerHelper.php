@@ -51,10 +51,9 @@ class CustomerHelper extends Venturo
   }
 
 
-  public function getAll(array $filter, int $itemPerPage = 0, string $sort = '')
+  public function getAll(array $filter, int|string $itemPerPage = 0, string $sort = '')
   {
-    $customers = $this->customerModel->getAll($filter, $itemPerPage, $sort);
-
+    $customers = $this->customerModel->getAll($filter, 1, $itemPerPage, $sort);
 
     return [
       'status' => true,
