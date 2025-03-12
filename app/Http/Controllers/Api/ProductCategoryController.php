@@ -33,7 +33,7 @@ class ProductCategoryController extends Controller
         $filter = [
             'name' => $request->name ?? '',
         ];
-        $categories = $this->category->getAll($filter, $request->per_page ?? 25, $request->sort ?? '');
+        $categories = $this->category->getAll($filter, $request->page ?? 1,  $request->per_page ?? 25, $request->sort ?? '');
 
         return response()->success(new CategoryCollection($categories['data']));
     }
@@ -51,18 +51,22 @@ class ProductCategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        if (isset($request->validator) && $request->validator->fails()) {
-            return response()->failed($request->validator->errors());
-        }
+        //     if (isset($request->validator) && $request->validator->fails()) {
+        //         return response()->failed($request->validator->errors());
+        //     }
 
-        $payload = $request->only(['name']);
-        $category = $this->category->create($payload);
+        //     $payload = $request->only(['name']);
+        //     $category = $this->category->create($payload);
 
-        if (!$category['status']) {
-            return response()->failed($category['error']);
-        }
+        //     if (!$category['status']) {
+        //         return response()->failed($category['error']);
+        //     }
 
-        return response()->success(new CategoryResource($category['data']), 'category berhasil ditambahkan');
+        //     return response()->success(new CategoryResource($category['data']), 'category berhasil ditambahkan');
+
+        return [
+            'status' => true,
+        ];
     }
 
     public function update(CategoryRequest $request)
