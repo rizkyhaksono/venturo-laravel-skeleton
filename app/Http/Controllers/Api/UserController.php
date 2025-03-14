@@ -50,9 +50,7 @@ class UserController extends Controller
 
         return response()->success([
             'list' => UserResource::collection($users['data']),
-            'meta' => [
-                'total' => $users['total'],
-            ],
+
         ]);
     }
 

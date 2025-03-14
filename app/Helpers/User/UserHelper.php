@@ -164,7 +164,7 @@ class UserHelper extends Venturo
          * Jika dalam payload terdapat base64 foto, maka Upload foto ke folder public/uploads/foto-user
          */
         if (! empty($payload['photo'])) {
-            $fileName = $this->generateFileName($payload['photo'], 'USER_'.date('Ymdhis'));
+            $fileName = $this->generateFileName($payload['photo'], 'USER_' . date('Ymdhis'));
             $photo = $payload['photo']->storeAs(self::USER_PHOTO_DIRECTORY, $fileName, 'public');
             $payload['photo'] = $photo;
         } else {

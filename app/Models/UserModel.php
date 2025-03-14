@@ -131,7 +131,13 @@ class UserModel extends Authenticatable implements CrudInterface, JWTSubject
         }
 
         $total = $user->count();
-        $list = $user->skip($skip)->take($itemPerPage)->orderByRaw($sort)->get();
+        $list = $user;
+
+        if (!empty($sort)) {
+            $list = $list->orderByRaw($sort);
+        }
+
+        $list = $list->skip($skip)->take($itemPerPage)->get();
 
         return [
             'total' => $total,
