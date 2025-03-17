@@ -64,8 +64,8 @@ Route::prefix('v1')->group(function () {
     Route::post('/sales', [SaleController::class, 'store']);
     Route::put('/sales/{id}', [SaleController::class, 'update']);
     Route::delete('/sales/{id}', [SaleController::class, 'destroy']);
-    Route::get('/sale-customer', [SaleController::class, 'saleCustomer']);
 
+    Route::get('/sale-customer', [SaleController::class, 'saleCustomer']);
     Route::get('/report/sales-menu', [ReportSalesController::class, 'viewSalesCategories']);
     Route::get('/download/sales-category', [ReportSalesController::class, 'viewSalesCategories']);
 });

@@ -10,12 +10,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ReportSalesController extends Controller
 {
-    protected $salesCategory;
+  protected $salesCategory;
 
-    public function __construct(SalesCategoryHelper $salesCategory)
-    {
-        $this->salesCategory = $salesCategory;
-    }
+  public function __construct(SalesCategoryHelper $salesCategory)
+  {
+    $this->salesCategory = $salesCategory;
+  }
 
   public function viewSalesCategories(Request $request)
   {
@@ -26,8 +26,7 @@ class ReportSalesController extends Controller
 
     $sales = $this->salesCategory->get($startDate, $endDate, $categoryId);
     if ($isExportExcel) {
-      // dd($sales);
-      return Excel::download(new ReportSalesCategory($sales), 'report-sales-category.xls');
+      return Excel::download(new ReportSalesCategory($sales), 'report-sales-category.xlsx');
     }
     return response()->success($sales['data'], '', [
       'dates'          => $sales['dates'] ?? [],
